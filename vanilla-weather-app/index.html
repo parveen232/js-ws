@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <header>
+        <div class="h-container">
+            <h1>Vanilla Weather App</h1>
+            <form action="#">
+                <input type="text" name="city-name" id="city-name" placeholder="City Name">
+                <button class="search-btn btn">Search</button>
+            </form>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="sidebar">
+                <form action="#" id="get-weather">
+                    <select name="select city" id="select-city">
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Gurugram">Gurugram</option>
+                        <option value="Las Vegas">Las Vegas</option>
+                        <option value="London">London</option>
+                    </select>
+                    <button class="getw-btn btn">Get Weather</button>
+                </form>
+            </div>
+            <div class="data">
+                <h2 class="no-data">No Data</h2>
+                <div class="card">
+                    <button id="remove">x</button>
+                    <div><h3 id="wcity"></h3></div>
+                    <div>Description: <span id="description"></span></div>
+                    <div>Temperature: <span id="temp"></span>°C</div>
+                    <div>Humidity: <span id="humidity"></span>%</div>
+                    <div>Pressure: <span id="pressure"></span>hPa</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="app.js"></script>
+</body>
+</html>
