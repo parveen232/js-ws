@@ -1,13 +1,7 @@
 const getWeather = document.getElementById('get-weather');
 const selectedCity = document.getElementById('select-city');
-const card = document.querySelector('.card');
+const weatherData = document.querySelector('.weather-data');
 const noData = document.querySelector('.no-data');
-const wcity = document.getElementById('wcity');
-const description = document.getElementById('description');
-const temp = document.getElementById('temp');
-const humidity = document.getElementById('humidity');
-const pressure = document.getElementById('pressure');
-const remove = document.getElementById('remove');
 
 getWeather.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -18,19 +12,41 @@ async function displayData(city) {
     const data = await getData(city);
 
     noData.style.display = `none`;
-    card.style.display = 'flex';
+    noData.parentElement.classList.remove('no-data-container');
 
-    wcity.innerText = city;
-    description.innerText = data.description;
-    pressure.innerText = data.pressure_in_hPa;
-    humidity.innerText = data.humidity_in_percent;
-    temp.innerText = data.temp_in_celsius;
+    const li = document.createElement('li');
 
-    card.classList.add('rbborder');
-
+    li.classList.add('gborder');
     setTimeout(() => {
-      card.classList.remove('rbborder');
+        li.classList.remove('gborder');
+        li.classList.add('liborder');
     }, 3000);
+
+    li.innerHTML = `
+        <div class="card">
+             <button class="remove">x</button>
+             <div><h3 id="wcity">${city}</h3></div>
+             <div>Description: <span id="description">${data.description}</span></div>
+             <div>Temperature: <span id="temp">${data.temp_in_celsius}</span>°C</div>
+             <div>Humidity: <span id="humidity">${data.humidity_in_percent}</span>%</div>
+             <div>Pressure: <span id="pressure">${data.pressure_in_hPa}</span>hPa</div>
+         </div>
+    `
+
+    weatherData.prepend(li)
+
+    const removeList = document.querySelectorAll('.remove');
+
+    for(const remove of removeList) {
+        remove.addEventListener('click', () => {
+            remove.parentElement.parentElement.remove();
+
+            if(weatherData.innerHTML === ``) {
+                noData.style.display = `block`;
+                noData.parentElement.classList.add('no-data-container');
+            } 
+        })
+    }
 }
 
 async function getData(city) {
@@ -38,8 +54,3 @@ async function getData(city) {
     const data = await res.json();
     return data;
 }
-
-remove.addEventListener('click', () => {
-    card.style.display = `none`;
-    noData.style.display = `block`
-})

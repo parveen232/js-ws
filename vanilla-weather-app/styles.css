@@ -76,16 +76,37 @@ button {
 }
 
 .data {
-    padding: 20px;
+    padding: 10px;
+}
+
+.no-data-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px;
+}
+
+.weather-data {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.weather-data li {
+    margin: 0 auto;
+}
+
+.liborder {
     border: 3px solid royalblue;
 }
 
+.gborder {
+    border: 5px solid green;
+}
+
 .card {
-    display: none;
+    display: flex;
     flex-direction: column;
     padding: 20px;
     font-size: 20px;
@@ -95,7 +116,7 @@ button {
     font-weight: 600;
 }
 
-#remove {
+.remove {
     width: 30px;
     height: 30px;
     background-color: royalblue;
@@ -108,8 +129,8 @@ button {
     justify-content: center;
 }
 
-.rbborder {
-    border: 3px solid royalblue;
+.remove:hover {
+    background-color: rgba(65, 105, 225, 0.8);
 }
 
 @media (min-width: 47em) {
@@ -119,7 +140,7 @@ button {
     }
 
     .container {
-        height: calc(100vh - 100px);
+        min-height: calc(100vh - 100px);
         flex-direction: row;
     }
 
@@ -131,9 +152,16 @@ button {
 
     .data {
         width: calc(100% - 300px);
+        padding: 20px;
+        margin: 20px;
+        border: 3px solid royalblue;
     }
 
     #get-weather {
         height: 120px;
+    }
+
+    .weather-data li {
+        margin: 0;
     }
 }
